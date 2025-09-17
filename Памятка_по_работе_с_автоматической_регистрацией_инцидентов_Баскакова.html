@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Памятка для поддержки L1/L2</title>
+    <style>
+        body {
+            font-family: Arial;
+            line-height: 1.5;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #FF8C00;
+        }
+
+        h2 {
+            border-left: 4px solid #FFA500;
+            padding-left: 10px;
+	    padding-top: 15px;
+        }
+
+        .card {
+            background-color: #FFF8DC;
+	    border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .steps {
+            margin: 20px 0;
+        }
+
+        .step {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .step:before {
+            content: "▪";
+            position: absolute;
+            left: 10px;
+            color: #FFA500;
+        }
+
+        .important {
+            background-color: #F4A460;
+	    border-radius: 8px;
+            padding: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #DFE6E9;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #F4A460;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #FFF8DC;
+        }
+
+        .keyword {
+            background-color: #DFE6E9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .category {
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+ 	category:nth-child(even) {
+            background-color: #FFF8DC;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #DFE6E9;
+            color: #808080;
+        }
+    </style>
+</head>
+<body>
+    <h1>Памятка по работе с функцией автоматического создания инцидента при получении письма с тегом "[Инцидент]"</h1>
+    
+    <div class="card">
+        <p>Настоящая памятка регламентирует процедуру обработки инцидентов, генерируемых системой автоматически на основании входящих электронных писем, а также определяет порядок действий на случай некорректного присвоения категории.</p>
+    </div>
+    
+    <h2>Принцип работы системы</h2>
+    <div class="steps">
+        <div class="step">Пользователь направляет письмо на support@company.com</div>
+        <div class="step">Система проверяет тему письма на наличие тега "[Инцидент]"</div>
+        <div class="step">В случае распознавания тега системой автоматически создается инцидент с темой письма</div>
+        <div class="step">Инциденту присваивается приоритет"Средний", в случае, если в теме указано "СРОЧНО" - "Высокий"</div>
+	<div class="step">Система определяет категорию по ключевым словам</div>
+        <div class="step">Если категория не найдена - инцидент попадает в ручную очередь</div>
+    </div>
+    
+    <h2>Ключевые слова и категории</h2>
+    <p>Система автоматически определяет категорию инцидента по следующим словам:</p>
+    
+    <table>
+        <tr>
+            <th>Ключевые слова</th>
+            <th>Категория</th>
+        </tr>
+        <tr>
+            <td><span class="keyword">недоступен</span>, <span class="keyword">не работает</span>, <span class="keyword">ошибка</span></td>
+            <td><span class="category">Сбои</span></td>
+        </tr>
+        <tr>
+            <td><span class="keyword">медленно</span>, <span class="keyword">тормозит</span>, <span class="keyword">зависает</span></td>
+            <td><span class="category">Производительность</span></td>
+        </tr>
+        <tr>
+            <td><span class="keyword">пароль</span>, <span class="keyword">войти</span>, <span class="keyword">логин</span></td>
+            <td><span class="category">Доступ</span></td>
+        </tr>
+        <tr>
+            <td><span class="keyword">установить</span>, <span class="keyword">обновить</span>, <span class="keyword">ПО</span></td>
+            <td><span class="category">ПО</span></td>
+        </tr>
+    </table>
+    
+    <h2>Рекомендации по работе с инцидентами без категории</h2>
+    <div class="steps">
+        <div class="step">Регулярно проверяйте "Ручную очередь" </div>
+        <div class="step">Откройте инцидент и прочитайте письмо</div>
+        <div class="step">Определите категорию по смыслу проблемы</div>
+        <div class="step">Назначьте правильную категорию вручную</div>
+        <div class="step">В случае недостатка сведений - уточните у пользователя информацию о возникшей проблеме</div>
+    </div>
+    
+    <div class="important">
+        <p><strong>Важно!</strong> Если в теме письма есть слово <span class="keyword">СРОЧНО</span>, обязательно проверьте приоритет - он должен быть "Высокий".</p>
+    </div>
+    
+    <h2>Частые проблемы и решения</h2>
+    <table>
+        <tr>
+            <th>Проблема</th>
+            <th>Решение</th>
+        </tr>
+        <tr>
+            <td>Инцидент создался без тега [Инцидент]</td>
+            <td>Необходимо переквалифицировать созданный инцидент в запрос или удалить</td>
+        </tr>
+        <tr>
+            <td>Инцидент не создался, хотя тег был</td>
+            <td>Необходимо создать инцидент вручную и сообщить администратору</td>
+        </tr>
+        <tr>
+            <td>Некорректно определена категория</td>
+            <td>Исправить категорию вручную и предложить новое ключевое слово</td>
+        </tr>
+    </table>
+    
+    <div class="footer">
+        <p>Памятка составлена для сотрудников поддержки L1/L2</p>
+    </div>
+</body>
+</html>
